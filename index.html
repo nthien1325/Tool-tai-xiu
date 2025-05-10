@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tool Tài Xỉu</title>
+</head>
+<body>
+  <h1>Tool Hỗ Trợ Tài Xỉu</h1>
+  <input type="text" id="ketQua" placeholder="Nhập kết quả (ví dụ: 4-5-3)" />
+  <button onclick="themKetQua()">Thêm</button>
+
+  <table border="1" id="bangKetQua">
+    <tr>
+      <th>STT</th>
+      <th>Kết quả</th>
+      <th>Tổng điểm</th>
+      <th>Loại</th>
+    </tr>
+  </table>
+
+  <script>
+    let stt = 1;
+    function themKetQua() {
+      const input = document.getElementById("ketQua").value;
+      const parts = input.split("-").map(Number);
+      const tong = parts.reduce((a, b) => a + b, 0);
+      const loai = tong > 10 ? "Tài" : "Xỉu";
+
+      const table = document.getElementById("bangKetQua");
+      const row = table.insertRow();
+      row.innerHTML = `<td>${stt++}</td><td>${input}</td><td>${tong}</td><td>${loai}</td>`;
+      document.getElementById("ketQua").value = "";
+    }
+  </script>
+</body>
+</html>
